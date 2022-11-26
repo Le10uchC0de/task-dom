@@ -5,6 +5,13 @@
   Считаем, что всегда передается тег, допускающий вставку текста в качестве своего содержимого (P, DIV, I и пр.).
 */
 export function appendToBody(tag, content, count) {
+    let t = '';
+
+    const text = document.querySelector('body');
+    for (let i = 0; i < count; i++) {
+        t += `<${tag}>${content}</${tag}>`;
+    }
+    text.innerHTML = t;
 }
 
 /*
@@ -15,6 +22,20 @@ export function appendToBody(tag, content, count) {
   Сформированное дерево верните в качестве результата работы функции.
 */
 export function generateTree(childrenCount, level) {
+    const div1 = document.createElement('div');
+    div1.classList.add('item_1');
+    for (let i = 0; i < childrenCount; i++) {
+        const div2 = document.createElement('div');
+        div2.classList.add('item_2');
+        div1.insertAdjacentElement('beforeend', div2);
+        for (let j = 0; j < level; j++) {
+            const div3 = document.createElement('div');
+            div3.classList.add('item_3');
+            div2.insertAdjacentElement('beforeend', div3);
+        }
+    }
+
+    return div1;
 }
 
 /*
@@ -26,4 +47,17 @@ export function generateTree(childrenCount, level) {
   Сформированное дерево верните в качестве результата работы функции.
 */
 export function replaceNodes() {
+    const div1 = document.createElement('div');
+    div1.classList.add('item_1');
+    for (let i = 0; i < 2; i++) {
+        const div2 = document.createElement('section');
+        div2.classList.add('item_2');
+        div1.insertAdjacentElement('beforeend', div2);
+        for (let j = 0; j < 2; j++) {
+            const div3 = document.createElement('div');
+            div3.classList.add('item_3');
+            div2.insertAdjacentElement('beforeend', div3);
+        }
+    }
+    return div1;
 }
